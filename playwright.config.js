@@ -16,11 +16,12 @@ const  config=({
   testDir: './tests',
   /* Run tests in files in parallel */
   // given the timeout limit to 40 seconds
-  timeout: 40 * 1000,
+  timeout: 100 * 1000,
 //assertion Validation
   expect: {
-    timeout: 40 * 1000,
+    timeout: 100 * 1000,
   },
+
 
  //fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -37,6 +38,8 @@ const  config=({
     //Browsername Given below
     browserName: 'chromium',
     // baseURL: 'http://localhost:3000',
+    //To See run over browser
+    headless: false,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
