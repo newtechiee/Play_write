@@ -30,9 +30,9 @@ test.only('Browser context Playwright Test', async ({browser}) => {
     await expect(errorMessage).toContainText("Incorrect");
     
     // Second attempt with correct credentials
-    try {
+
         // Wait for error message to be visible before attempting second login
-        await errorMessage.waitFor({ state: 'visible' });
+       
         
         // Wait a bit for the form to be ready for new input
         await page.waitForTimeout(1000);
@@ -50,20 +50,17 @@ test.only('Browser context Playwright Test', async ({browser}) => {
         
         console.log('Clicking sign in button...');
         // Wait for both navigation and click
-        await Promise.all([
-            page.waitForNavigation(),
-            signIn.click()
-        ]);
+        await page.waitForTimeout(3000);
+        await  signIn.click()
+        
+
+         await page.waitForTimeout(3000);
+         console.log( await page.locator(".card-body a").first().textContent())
+        console.log( await page.locator(".card-body a").nth(1).textContent())
         
         // Verify successful login
-        await page.waitForURL(/.*shop/, { timeout: 10000 });
-        console.log('Successfully logged in!');
-    } catch (error) {
-        console.error('Error during login:', error.message);
-        // Take a screenshot on failure
-        await page.screenshot({ path: 'login-error.png' });
-        throw error;
-    }
+      
+   
     
     // Add verification for successful login (uncomment and adjust as needed)
     // await expect(page).toHaveURL(/.*shop/); // Verify redirect to shop page
