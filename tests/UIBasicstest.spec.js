@@ -1,8 +1,8 @@
-const {test}=require('@playwright/test')
+const {test}= require('@playwright/test')
 const { expect } = require('@playwright/test');
 
 
-test.only('Browser context Playwright Test', async ({browser}) => {
+test('Browser context Playwright Test', async ({browser}) => {
     // Create a new browser context and page
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -15,6 +15,7 @@ test.only('Browser context Playwright Test', async ({browser}) => {
     const password = page.locator("[type='password']");
     const signIn = page.locator("#signInBtn");
     const errorMessage = page.locator("[style*='block']");
+    const CardTitels=page.locator(".card-body a");
     
     // Verify page title
     console.log(await page.title());
@@ -55,9 +56,13 @@ test.only('Browser context Playwright Test', async ({browser}) => {
         
 
          await page.waitForTimeout(3000);
-         console.log( await page.locator(".card-body a").first().textContent())
-        console.log( await page.locator(".card-body a").nth(1).textContent())
+         console.log( await CardTitels.first().textContent())
+        console.log( await CardTitels.nth(1).textContent())
         
+
+        //Grab all  the elemernt in page 
+        const allTitels=await CardTitels.allTextContents();
+        console.log (allTitels);
         // Verify successful login
       
    
