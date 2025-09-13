@@ -22,7 +22,7 @@ test('Browser context Playwright Test', async ({page}) => {
     await dropDown.selectOption("consult")
     await  page.locator(".radiotextsty").last().click();
     await page.locator("#okayBtn").click();
-
+    dropDown.
     //asserertion
    expect(page.locator(".radiotextsty").last()).toBeChecked();
    console.log(await page.locator(".radiotextsty").last().isChecked());
@@ -71,6 +71,8 @@ test.only('Child Window Contol', async ({browser}) => {
     await page.locator("#username").type(domain);
     await page.pause()
     console.log(await page.locator("#username").textContent());
+    console.log(await page.locator("#username").inputValue());
+    
 
   
    
